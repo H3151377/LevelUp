@@ -1,10 +1,11 @@
 package com.levelup.Model;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -15,9 +16,13 @@ import lombok.*;
 public class Category {
 
     @Id
-    @Column(name = "Category_Id")
-    private long Category_Id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "category_id")
+    private long categoryId;
 
-    @Column(name = "Category_name")
-    private String Category_Name;
+    @Column(name = "category_name")
+    private String categoryName;
+
+    @OneToMany(mappedBy = "category")
+    private Set<Courses> courses = new HashSet<>();
 }

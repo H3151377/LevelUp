@@ -1,13 +1,12 @@
 package com.levelup.Model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import lombok.*;
 
 import javax.naming.Name;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -27,8 +26,9 @@ public class Courses {
     @Column(name="Course_Description")
     private String Course_Description;
 
-    @Column(name="Course_Category_Id")
-    private String Course_Category_Id;
+    @ManyToOne
+    @JoinColumn(name = "category_id", nullable = false)
+    private Category category;
 
     @Column(name="Course_Price")
     private String Course_Price;
@@ -44,5 +44,8 @@ public class Courses {
 
     @Column(name = "Course_Image_URL")
     private List<String> Course_Image_URL;
+
+    @ManyToMany(mappedBy = "userCourses")
+    private Set<User> users = new HashSet<>();
 
 }
