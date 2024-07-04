@@ -2,9 +2,13 @@ package com.levelup.Model;
 
 import jakarta.persistence.*;
 import lombok.*;
-
-import javax.naming.Name;
 import java.util.HashSet;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+
 import java.util.List;
 import java.util.Set;
 
@@ -18,7 +22,7 @@ public class Courses {
 
     @Id
     @Column(name = "Courses_Id")
-    private Long Courses_Id;
+    private long Courses_Id;
 
     @Column(name="Course_Name")
     private String Course_Name;

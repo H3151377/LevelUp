@@ -8,7 +8,7 @@ import com.levelup.Dao.Dao;
 
 
 @Service
-public class UserService implements Services {
+public class UserServiceImpl implements Services {
 	@Autowired
 	private Dao User_Dao;
 }

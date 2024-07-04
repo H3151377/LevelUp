@@ -1,21 +1,27 @@
 package com.levelup.Model;
 
 import jakarta.persistence.*;
-import org.hibernate.mapping.List;
-import org.springframework.stereotype.Repository;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
 import java.util.HashSet;
 import java.util.Set;
 
+
 @Getter
 @Setter
 @ToString
 @AllArgsConstructor
+@NoArgsConstructor
+
 @Entity
 public class User {
 	
@@ -31,6 +37,10 @@ public class User {
 
 	@Column(name="User_UserType")
 	private String User_UserType;
+	
+	@Column(name="User_Points")
+	private long User_Points;
+
 
 	@ManyToMany
 	@JoinTable(
@@ -39,5 +49,11 @@ public class User {
 			inverseJoinColumns = @JoinColumn(name = "courses_id"))
 	private Set<Courses> userCourses = new HashSet<>();
 	
-	
+
+    public void completeQuiz(Courses course, int points) {
+        if (userCourses.contains(course)) {
+            this.User_Points += points;
+        }
+    }
+
 }
